@@ -4,8 +4,11 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import PageNav from '../components/PageNav'
 
-const BlogIndex = ({ data, location }) => {
+const BlogIndex = props => {
+
+  const {data, location, pageContext} = props
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes
 
@@ -24,7 +27,7 @@ const BlogIndex = ({ data, location }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Bio />
+      {/* <Bio /> */}
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
           const title = post.frontmatter.title || post.fields.slug
@@ -37,11 +40,9 @@ const BlogIndex = ({ data, location }) => {
                 itemType="http://schema.org/Article"
               >
                 <header>
-                  <h2>
-                    <Link to={post.fields.slug} itemProp="url">
+                  <Link className="text-2xl block font-extrabold py-4" to={post.fields.slug} itemProp="url">
                       <span itemProp="headline">{title}</span>
                     </Link>
-                  </h2>
                   <small>{post.frontmatter.date}</small>
                 </header>
                 <section>
@@ -57,6 +58,7 @@ const BlogIndex = ({ data, location }) => {
           )
         })}
       </ol>
+      <PageNav pageContext={pageContext}/>
     </Layout>
   )
 }
@@ -68,16 +70,16 @@ export default BlogIndex
  *
  * See: https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
  */
-export const Head = () => <Seo title="All posts" />
+export const Head = () => <Seo title="All thoughts" />
 
 export const pageQuery = graphql`
-  query {
+  query ($limit: Int!, $skip: Int!){
     site {
       siteMetadata {
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, limit: $limit, skip: $skip) {
       nodes {
         excerpt
         fields {

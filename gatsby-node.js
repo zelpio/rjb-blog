@@ -56,6 +56,26 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       })
     })
   }
+
+  // Create paginated blog list pages
+  const postsPerPage = 2;
+  const numPages = Math.ceil(posts.length / postsPerPage);
+  Array.from({ length: numPages }).forEach((_, i) => {
+    const firstPage = i === 0;
+    const currentPage = i + 1;
+    createPage({
+      path: firstPage ? "/" : `/page/${currentPage}`,
+      component: path.resolve("./src/templates/index.js"),
+      context: {
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+        numPages,
+        currentPage,
+      },
+    });
+  });
+
+
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {

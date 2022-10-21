@@ -6,13 +6,14 @@ module.exports = {
       summary: `who lives and works in San Francisco building useful things.`,
     },
     description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
+    siteUrl: `https://blog.bigremotejobs.com/`,
     social: {
       twitter: `kylemathews`,
     },
   },
   plugins: [
     `gatsby-plugin-postcss`,
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-netlify-cms`,
     `gatsby-plugin-image`,
     {

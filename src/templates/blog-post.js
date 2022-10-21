@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
+import PostJob from "../components/postJobDialog"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
@@ -20,7 +20,7 @@ const BlogPostTemplate = ({
       >
         <header>
           <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
+          <p className="opacity-60 font-bold">{post.frontmatter.date}</p>
         </header>
         <section
           dangerouslySetInnerHTML={{ __html: post.html }}
@@ -28,15 +28,15 @@ const BlogPostTemplate = ({
         />
         <hr />
         <footer>
-          <Bio />
+          <PostJob />
         </footer>
       </article>
-      <nav className="blog-post-nav">
+      <div className=" bg-slate-50 p-5">
+        <h5 className="opacity-80">More long thoughts</h5>
+        <nav className="blog-post-nav">
         <ul
           style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
+
             listStyle: `none`,
             padding: 0,
           }}
@@ -44,7 +44,7 @@ const BlogPostTemplate = ({
           <li>
             {previous && (
               <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
+                {previous.frontmatter.title} →
               </Link>
             )}
           </li>
@@ -57,6 +57,8 @@ const BlogPostTemplate = ({
           </li>
         </ul>
       </nav>
+      </div>
+      
     </Layout>
   )
 }

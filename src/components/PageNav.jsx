@@ -27,24 +27,6 @@ export default function PageNav({pageContext }) {
                 <div >Older posts<ArrowSmallRightIcon className="h-6 w-6 inline"></ArrowSmallRightIcon></div>
             </Link>
         )}
-
-      {/* <div>
-        {!isFirst && (
-          <span style={{marginRight: "20px"}}>
-            <Link to={prev} rel="prev">
-              <ArrowSmallLeftIcon className="h-6 w-6"></ArrowSmallLeftIcon> Newer posts
-            </Link>
-          </span>
-        )}
-
-        {!isLast && (
-          <span style={{marginLeft: "20px", display: "flex", flexDirection:"row"}} className="flex">
-            <Link  to={`/page/${next}`} rel="next">
-                <div >Older posts<ArrowSmallRightIcon className="h-6 w-6"></ArrowSmallRightIcon></div>
-            </Link>
-          </span>
-        )}
-      </div> */}
     </div>
   );
 }

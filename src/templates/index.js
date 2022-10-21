@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
+import PostJob from "../components/postJobDialog"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import PageNav from '../components/PageNav'
@@ -15,11 +15,9 @@ const BlogIndex = props => {
   if (posts.length === 0) {
     return (
       <Layout location={location} title={siteTitle}>
-        <Bio />
+        <PostJob />
         <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
+          No blog posts found.
         </p>
       </Layout>
     )
@@ -27,7 +25,7 @@ const BlogIndex = props => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      {/* <Bio /> */}
+      <PostJob />
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
           const title = post.frontmatter.title || post.fields.slug
@@ -40,10 +38,10 @@ const BlogIndex = props => {
                 itemType="http://schema.org/Article"
               >
                 <header>
-                  <Link className="text-2xl block font-extrabold py-4" to={post.fields.slug} itemProp="url">
+                  <Link className="text-xl block font-black py-4" to={post.fields.slug} itemProp="url">
                       <span itemProp="headline">{title}</span>
                     </Link>
-                  <small>{post.frontmatter.date}</small>
+                  <div className="text-sm opacity-70">{post.frontmatter.date}</div>
                 </header>
                 <section>
                   <p
@@ -51,6 +49,7 @@ const BlogIndex = props => {
                       __html: post.frontmatter.description || post.excerpt,
                     }}
                     itemProp="description"
+                    className="text-md opacity-70"
                   />
                 </section>
               </article>

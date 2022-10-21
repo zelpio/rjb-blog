@@ -16,7 +16,6 @@ const Layout = ({ location, title, children }) => {
         <div className="pt-5">
           {/* <span className="p-3 px-10 font-bold border-solid border-2 border-emerald-500 rounded-md text-white bg-emerald-500 mr-5">Post a job</span> */}
           <Link to="https://blog.bigremotejobs.com" className="p-3 text-black px-10 border-solid border-2 border-black rounded-md">Discover jobs</Link>
-          {/* <Link to="https://blog.bigremotejobs.com" className="p-3 align-middle whitespace-nowrap text-center px-10 font-bold border-solid border-2 border-emerald-500 rounded-md text-white bg-emerald-500 mr-5">Post a job</Link> */}
         </div>
         </div>
       </div>
